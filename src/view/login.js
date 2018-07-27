@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import LoginUI from "./loginUI";
-import { withRouter } from "react-router";
 import { setLoginInfo, setLoginSuccess } from "../action/loginAction";
+import LoginUI from "./loginUI";
+
 const mapStateToProps = state => {
   return {
-    isLogin: state.user.isLogin
+    isLogin: state.login.user.isLogin
   };
 };
 

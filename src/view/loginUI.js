@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import login from "../service/loginService";
+
 const loginUI = ({
   setLoginInfo = f => f,
   setLoginSucess = f => f,
-  isLogin = ""
+  isLogin = false
 }) => {
   let username = "";
   let password = "";
@@ -11,7 +13,7 @@ const loginUI = ({
   return (
     <div className="login-wrapper">
       <div className="row">
-        <label>UserName: </label>
+        <label htmlFor="username">UserName: </label>
         <input
           type="text"
           name="username"
@@ -21,7 +23,7 @@ const loginUI = ({
         />
       </div>
       <div className="row">
-        <label>Password </label>
+        <label htmlFor="password">Password </label>
         <input
           type="password"
           name="password"
@@ -32,9 +34,9 @@ const loginUI = ({
       </div>
       <div className="row">
         <button
-          onClick={async e => {
+          onClick={async () => {
             setLoginInfo(username, password);
-            let loginstatus = await login(username, password);
+            const loginstatus = await login(username, password);
             if (loginstatus) {
               setLoginSucess();
             }
@@ -45,6 +47,12 @@ const loginUI = ({
       </div>
     </div>
   );
+};
+
+loginUI.propTypes = {
+  setLoginInfo: PropTypes.func.isRequired,
+  setLoginSucess: PropTypes.func.isRequired,
+  isLogin: PropTypes.bool.isRequired
 };
 
 export default loginUI;

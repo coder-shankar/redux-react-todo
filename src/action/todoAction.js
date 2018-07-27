@@ -1,14 +1,14 @@
-export const SET_TODO = "SET_TODO";
+export const CREATE_TODO = "CREATE_TODO";
+export const ADD_TODO = "ADD_TODO";
 
-export const setTodo = () => ({
-  type: SET_TODO,
+export const createTodo = () => ({
+  type: CREATE_TODO,
   payload: {}
 });
 
-export const setLoginSuccess = () => ({
-  type: SET_LOGIN_SUCCESS
-});
-
-export const setLoginError = message => ({
-  type: SET_LOGIN_ERROR
+export const addTodo = list => ({
+  type: ADD_TODO,
+  payload: {
+    list: list
+  }
 });

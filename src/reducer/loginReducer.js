@@ -1,4 +1,5 @@
 import { SET_LOGIN_INFO, SET_LOGIN_SUCCESS } from "../action/loginAction";
+
 const INITIAL_STATE = {
   user: {
     username: "",
@@ -12,6 +13,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
     case SET_LOGIN_INFO:
       return {
         ...state,
+        ...state.login,
         user: {
           username: action.payload.username,
           password: action.payload.password
@@ -21,6 +23,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
     case SET_LOGIN_SUCCESS:
       return {
         ...state,
+        ...state.login,
         user: { ...state.user, isLogin: true }
       };
 

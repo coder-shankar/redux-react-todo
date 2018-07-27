@@ -26,3 +26,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.todo-wrapper{
+  margin:  0 auto;
+  background:  grey;
+  color: black;
+  border-radius: 1px solid green;
+  width: 500px;
+}
+td{
+  text-align: center;
+  border: 1px solid yellow;
+}
