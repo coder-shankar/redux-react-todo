@@ -1,4 +1,5 @@
 import axios from "axios";
+import setAxiosHeader from "./axiosService";
 const login = async (username, password) => {
   let loginStatus = false;
   try {
@@ -16,6 +17,7 @@ const login = async (username, password) => {
       const { accessToken, refreshToken } = res.data;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
+      setAxiosHeader(localStorage.accessToken);
     }
   } catch (err) {
     alert("username or password doesnot match");

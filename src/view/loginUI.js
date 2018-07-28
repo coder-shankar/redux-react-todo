@@ -1,16 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import login from "../service/loginService";
+import { Redirect } from "react-router-dom";
+let username = "";
+let password = "";
 
 const loginUI = ({
   setLoginInfo = f => f,
   setLoginSucess = f => f,
   isLogin = false
 }) => {
-  let username = "";
-  let password = "";
-
-  return (
+  return isLogin ? (
+    <div>
+      <Redirect to="/todo" />
+    </div>
+  ) : (
     <div className="login-wrapper">
       <div className="row">
         <label htmlFor="username">UserName: </label>

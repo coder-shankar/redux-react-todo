@@ -3,7 +3,6 @@ import { addTodo } from "../action/todoAction";
 import TodoUI from "./todoUI";
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     todos: state.todo
   };
@@ -15,9 +14,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const EnhancedLogin = connect(
+const EnhancedTodo = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoUI);
 
-export default EnhancedLogin;
+export default EnhancedTodo;
