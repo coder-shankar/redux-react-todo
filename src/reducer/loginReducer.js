@@ -1,4 +1,8 @@
-import { SET_LOGIN_INFO, SET_LOGIN_SUCCESS } from "../action/loginAction";
+import {
+  SET_LOGIN_INFO,
+  SET_LOGIN_SUCCESS,
+  SET_LOGIN_ERROR
+} from "../action/loginAction";
 
 const INITIAL_STATE = {
   user: {
@@ -25,6 +29,14 @@ const loginReducer = (state = INITIAL_STATE, action) => {
         ...state,
         ...state.login,
         user: { ...state.user, isLogin: true }
+      };
+    case SET_LOGIN_ERROR:
+      return {
+        ...state,
+        ...state.login,
+        user: {
+          isLogin: false
+        }
       };
 
     default:

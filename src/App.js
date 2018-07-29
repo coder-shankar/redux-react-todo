@@ -6,8 +6,7 @@ import Home from "./view/home";
 import Login from "./view/login";
 import Todo from "./view/todo";
 import SignUp from "./view/signUp";
-import { SET_LOGIN_SUCCESS } from "./action/loginAction";
-import setAxiosHeader from "./service/axiosService";
+import Logout from "./view/logout";
 
 class App extends Component {
   render() {
@@ -18,6 +17,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/todo" component={Todo} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/logout" component={Logout} />
         </Switch>
       </Router>
     );

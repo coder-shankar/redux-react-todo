@@ -14,6 +14,6 @@ export const setLoginSuccess = () => ({
   type: SET_LOGIN_SUCCESS
 });
 
-export const setLoginError = message => ({
+export const setLoginError = () => ({
   type: SET_LOGIN_ERROR
 });

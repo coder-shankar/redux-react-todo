@@ -1,7 +1,8 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import login from "../service/loginService";
-import { Redirect } from "react-router-dom";
+
 let username = "";
 let password = "";
 

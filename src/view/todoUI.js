@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import fetchData from "../service/todoServices";
 import TodoItem from "../component/todoItem";
 import SearchBox from "../component/todoSearch";
@@ -17,7 +18,7 @@ class todoUI extends React.Component {
   render() {
     return (
       <div className="todo-wrapper">
-        <SearchBox />
+        <SearchBox {...this.props} />
         <table>
           <tr>
             <th>Title</th>
@@ -28,6 +29,7 @@ class todoUI extends React.Component {
             <TodoItem {...todo} key={index} />
           ))}
         </table>
+        <Link to="/logout">Logout</Link>
       </div>
     );
   }
