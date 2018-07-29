@@ -16,7 +16,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 const logout = ({ setLoginError = f => f }) => {
-  localStorage.removeItem("accessToken");
+  delete localStorage.removeItem("accessToken");
+  delete localStorage.removeItem("refreshToken");
+
   setLoginError();
   return <Redirect to="/" />;
 };
