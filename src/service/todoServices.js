@@ -1,18 +1,15 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import moment from "moment";
 import setAxiosHeader from "./axiosService";
 
-const fetchData = async (query = "") => {
+const validateToken = async () => {
   let res = "";
 
   const token = localStorage.getItem("accessToken");
   const decoded = jwt_decode(token);
   const time =
     new Date(Date.now()).getMinutes() - new Date(decoded.exp).getMinutes();
-  console.log(time, "remaning teim");
-
-  if (localStorage.getItem("refreshToken") && time > 50) {
+  if (localStorage.getItem("refreshToken") && time > 5) {
     res = await axios({
       method: "post",
       url: "http://127.0.0.1:8848/api/refresh",
@@ -26,7 +23,11 @@ const fetchData = async (query = "") => {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
   }
+};
 
+const fetchData = async (query = "") => {
+  await validateToken();
+  let res = "";
   setAxiosHeader(localStorage.accessToken);
   try {
     res = await axios({
