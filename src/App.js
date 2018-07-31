@@ -8,20 +8,18 @@ import Todo from "./view/todo";
 import SignUp from "./view/signUp";
 import Logout from "./view/logout";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/todo" component={Todo} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/logout" component={Logout} />
-        </Switch>
-      </Router>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/todo" component={Todo} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/logout" component={Logout} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
