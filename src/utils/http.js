@@ -2,10 +2,10 @@ import axios from "axios";
 import setAxiosHeader from "../service/axiosService";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8848/api/todos"
+  baseURL: "http://127.0.0.1:8848/api"
 });
 
-export const refreshTokenHandler = () => {
+export const getDataFromApi = (query = "") => {
   try {
     instance.interceptors.response.use(
       response => {
@@ -15,6 +15,7 @@ export const refreshTokenHandler = () => {
         const originalRequest = error.config;
         console.log(error.response);
         if (error.response.status === 401) {
+          console.log("res");
           let res = await axios({
             method: "post",
             url: "http://127.0.0.1:8848/api/refresh",
@@ -36,14 +37,13 @@ export const refreshTokenHandler = () => {
   } catch (err) {
     console.log(err);
   }
-};
 
-export const getDataFromApi = (query = "") => {
   let res = "";
+
   try {
     res = instance({
       method: "get",
-      url: "http://127.0.0.1:8848/api/todos" + query,
+      url: "/todos" + query,
       headers: {
         "Content-Type": "application/json"
       }

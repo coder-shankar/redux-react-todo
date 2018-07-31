@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { React } from "react";
+import { Redirect } from "react-router-dom";
 const signUpService = async (name, email, password) => {
   console.log("hello");
   try {
@@ -17,11 +18,16 @@ const signUpService = async (name, email, password) => {
         }
       }
     });
-    console.log(res.data);
-    alert(res.data.sucess);
+    console.log(res);
+    if (res.status === 200) {
+      alert("signup sucesssful");
+      return true;
+    }
   } catch (err) {
     alert(err);
   }
+
+  return false;
 };
 
 export default signUpService;

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setLoginError } from "../action/loginAction";
+import logoutServices from "../service/logoutServices";
 
 const mapStateToProps = state => {
   return {
@@ -16,6 +17,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 const logout = ({ setLoginError = f => f }) => {
+  //calll logout api
+
+  logoutServices();
+
   delete localStorage.removeItem("accessToken");
   delete localStorage.removeItem("refreshToken");
 

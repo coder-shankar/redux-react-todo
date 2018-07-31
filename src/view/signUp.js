@@ -1,55 +1,72 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import validate from "../utils/validateSignupForm";
 import signup from "../service/signupService";
 
-const signUp = () => {
-  let name = "";
-  let password = "";
-  let email = "";
+class signUp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      password: "",
+      email: "",
+      isSignUp: false
+    };
+  }
 
-  return (
-    <div className="signUp">
-      <h2> Sign Up Form</h2>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          if (validate(name, email, password)) {
-            console.log("validation sucessful");
-            signup(name, email, password);
-          }
-        }}
-      >
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          onChange={e => {
-            name = e.target.value;
+  render() {
+    return this.state.isSignUp ? (
+      <Redirect to="/login" />
+    ) : (
+      <div className="signUp">
+        <h2> Sign Up Form</h2>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            if (
+              validate(this.state.name, this.state.email, this.state.password)
+            ) {
+              let isSignUp = signup(
+                this.state.name,
+                this.state.email,
+                this.state.password
+              );
+              this.setState({ isSignUp: isSignUp });
+            }
           }}
-        />
-        <br />
-        <label htmlFor="email">Email:</label>
-        <input
-          type="text"
-          htmlFor="email"
-          onChange={e => {
-            email = e.target.value;
-          }}
-        />
-        <br />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          onChange={e => {
-            password = e.target.value;
-          }}
-        />
-        <hr />
-        <input type="submit" />
-      </form>
-    </div>
-  );
-};
+        >
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            onChange={e => {
+              this.setState({ name: e.target.value });
+            }}
+          />
+          <br />
+          <label htmlFor="email">Email:</label>
+          <input
+            type="text"
+            htmlFor="email"
+            onChange={e => {
+              this.setState({ email: e.target.value });
+            }}
+          />
+          <br />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            onChange={e => {
+              this.setState({ password: e.target.value });
+            }}
+          />
+          <hr />
+          <input type="submit" />
+        </form>
+      </div>
+    );
+  }
+}
 
 export default signUp;
