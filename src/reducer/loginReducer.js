@@ -8,7 +8,9 @@ const INITIAL_STATE = {
   user: {
     username: "",
     password: "",
-    isLogin: false
+    isLogin: false,
+    accessToken: "",
+    refreshToken: ""
   }
 };
 
@@ -28,7 +30,12 @@ const loginReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ...state.login,
-        user: { ...state.user, isLogin: true }
+        user: {
+          ...state.user,
+          isLogin: true,
+          accessToken: localStorage.getItem("accessToken"),
+          refreshToken: localStorage.getItem("refreshToken")
+        }
       };
     case SET_LOGIN_ERROR:
       return {
