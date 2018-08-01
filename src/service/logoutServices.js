@@ -1,4 +1,6 @@
 import axios from "axios";
+import store from "../store";
+import { clear } from "../action/loginAction";
 
 const logout = async () => {
   let logOutStatus = false;
@@ -13,7 +15,9 @@ const logout = async () => {
     // checking response status
     if (res.status === 200) {
       logOutStatus = true;
-      console.log(res, "sfsdflsdfj");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("accessTOken");
+      store.dispatch(clear());
     }
   } catch (err) {
     alert("hey  match");

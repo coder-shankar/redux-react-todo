@@ -1,6 +1,7 @@
 import axios from "axios";
 import setAxiosHeader from "../service/axiosService";
-
+import store from "../store";
+import { setTOken, setToken } from "../action/loginAction";
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8848/api"
 });
@@ -15,7 +16,6 @@ export const getDataFromApi = (query = "") => {
         const originalRequest = error.config;
         console.log(error.response);
         if (error.response.status === 401) {
-          console.log("res");
           let res = await axios({
             method: "post",
             url: "http://127.0.0.1:8848/api/refresh",
@@ -24,12 +24,13 @@ export const getDataFromApi = (query = "") => {
               refreshToken: localStorage.getItem("refreshToken")
             }
           });
-
           const accessToken = res.data.newAccessToken;
           const refreshToken = res.data.newRefreshToken;
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);
           setAxiosHeader(accessToken);
+          store.dispatch(setToken(accessToken, refreshToken));
+
           return axios(originalRequest);
         }
       }

@@ -1,5 +1,6 @@
 export const CREATE_TODO = "CREATE_TODO";
 export const ADD_TODO = "ADD_TODO";
+export const CLEAR_STATE = "CLEAR_STATE";
 
 export const createTodo = () => ({
   type: CREATE_TODO,
@@ -11,4 +12,8 @@ export const addTodo = list => ({
   payload: {
     list: list
   }
+});
+
+export const clear = () => ({
+  type: CLEAR_STATE
 });
