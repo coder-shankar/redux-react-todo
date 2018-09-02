@@ -6,7 +6,7 @@ const signUpService = async (name, email, password) => {
   try {
     const res = await axios({
       method: "post",
-      url: "http://127.0.0.1:8848/api/signup",
+      url: "https://todo-serverside.herokuapp.com/signup",
       data: {
         email: email,
         password: password,
