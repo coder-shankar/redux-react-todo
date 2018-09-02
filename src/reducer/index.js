@@ -4,7 +4,7 @@ import loginReducer from "./loginReducer";
 
 const reducer = combineReducers({
   todo: todoReducer,
-  login: loginReducer
+  login: loginReducer 
 });
 
 export default reducer;

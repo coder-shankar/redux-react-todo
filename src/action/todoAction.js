@@ -10,7 +10,7 @@ export const createTodo = () => ({
 export const addTodo = list => ({
   type: ADD_TODO,
   payload: {
-    list: list
+    list
   }
 });
 

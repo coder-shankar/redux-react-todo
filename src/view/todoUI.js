@@ -15,7 +15,6 @@ class todoUI extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="todo-wrapper">
         <SearchBox {...this.props} />

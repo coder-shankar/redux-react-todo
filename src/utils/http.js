@@ -1,7 +1,8 @@
 import axios from "axios";
 import setAxiosHeader from "../service/axiosService";
 import store from "../store";
-import { setTOken, setToken } from "../action/loginAction";
+import { setToken } from "../action/loginAction";
+
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8848/api"
 });
@@ -9,14 +10,12 @@ const instance = axios.create({
 export const getDataFromApi = (query = "") => {
   try {
     instance.interceptors.response.use(
-      response => {
-        return response;
-      },
+      response => response,
       async error => {
         const originalRequest = error.config;
         console.log(error.response);
         if (error.response.status === 401) {
-          let res = await axios({
+          const res = await axios({
             method: "post",
             url: "http://127.0.0.1:8848/api/refresh",
             headers: {
@@ -44,7 +43,7 @@ export const getDataFromApi = (query = "") => {
   try {
     res = instance({
       method: "get",
-      url: "/todos" + query,
+      url: `/todos${  query}`,
       headers: {
         "Content-Type": "application/json"
       }

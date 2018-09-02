@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
 import "./App.css";
 import Home from "./view/home";
 import Login from "./view/login";
