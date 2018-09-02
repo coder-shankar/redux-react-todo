@@ -4,7 +4,7 @@ import store from "../store";
 import { setToken } from "../action/loginAction";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8848/api"
+  baseURL: "https://todo-serverside.herokuapp.com/api"
 });
 
 export const getDataFromApi = (query = "") => {
@@ -17,7 +17,7 @@ export const getDataFromApi = (query = "") => {
         if (error.response.status === 401) {
           const res = await axios({
             method: "post",
-            url: "http://127.0.0.1:8848/api/refresh",
+            url: "https://todo-serverside.herokuapp.com/api/refresh",
             headers: {
               "Content-Type": "application/json",
               refreshToken: localStorage.getItem("refreshToken")
