@@ -7,7 +7,7 @@ const logout = async () => {
   try {
     const res = await axios({
       method: "post",
-      url: "https://dashboard.heroku.com/apps/todo-serverside/api/logout",
+      url: "https://todo-serverside.herokuapp.com/api/logout",
       headers: {
         refreshToken: localStorage.getItem("refreshToken")
       }
